@@ -4,9 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel= "icon" href="./main-assets/LangTripFav.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <title>LangTrip</title>
 </head>
 <body>
-    
+    <header>
+        <div class="container header-container">
+            <div class="header-nav">
+                <div class="logoheader">
+                    <a class="nav-link" href="./index.html"><img src="./main-assets/logo.png" class="logo"></a>
+                </div>
+                <div class="menu">
+                    <nav class="navbar">
+                        <ul class="navlist">
+                            <li class="navitem"><a class="nav-link" href="./components/textbook/textbook.html">Учебник</a></li>
+                            <li class="navitem"><a class="nav-link" href="./components/stats/stats.html">Статистика</a></li>
+                            <li class="navitem"><a class="nav-link" href="./components/dictionary/dictionary.html">Словарь</a></li>
+                            <li class="navitem"><a class="nav-link" href="./components/games/games.html">Игры</a></li>
+                            <li class="navitem"><a class="nav-link auth" href="./components/autorization/autorization.html">Вход</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container main-container">
+            <section class="main-logo">
+                <img class="main-image" src="./main-assets/main-logo.png">
+            </section>
+            <section class="main-info">
+                <div class="main-text">
+                <h1 class="title">Изучай английский с LangTrip</h1>
+                <p class="subtitle">Используй быстрый и веселый способ изучения английского языка.</p>
+                <p class="subtitle">На любом устройстве!</p>
+                </div>
+                <div class="main-button">
+                    <a href="./components/autorization/autorization.html"><button class="btn login">Попробовать</button></a>
+                    <a href="#Team"><button class="btn about">О команде</button></a>
+                </div>
+            </section>
+        </div>
+        <section class="spacer"></section>
+        <div class="container team-container">
+            <section class="team" id="Team">
+                <div class="team-text">
+                    <h2 class="team-title">Разработчики</h2>
+                </div>
+                <div class="team-person">
+                    <div class="person">
+                        <img class="person-image" src="https://raw.githubusercontent.com/Elf-Ksenia/rsschool-cv/rsschool-cv-html/img/IMG_4113.jpg">
+                        <p class="name">Oksana Slipchenko</p>
+                        <a class="person-link" href="https://github.com/Elf-Ksenia">@Elf-Ksenia</a>
+                    </div>
+                    <div class="person">
+                        <img class="person-image person-grey" src="https://raw.githubusercontent.com/Arturstm/rsschool-cv/gh-pages/assets/img/avatar.jpg">
+                        <p class="name">Artur Stamboltsyan</p>
+                        <a class="person-link" href="https://github.com/Arturstm">@Arturstm</a>
+                    </div>
+                    <div class="person">
+                        <img class="person-image" src="https://raw.githubusercontent.com/Michail-Konon/rsschool-cv/gh-pages/img/erXVuB4i7Ak.jpg">
+                        <p class="name">Michail Konon</p>
+                        <a class="person-link" href="https://github.com/Michail-Konon">@Michail-Konon</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="date">
+                <p>©2022 RS LANG</p>
+            </div>
+            <div class="github">
+                <a class="github-link" href="https://github.com/Elf-Ksenia">Oksana Slipchenko</a>
+                <a class="github-link" href="https://github.com/Arturstm">Artur Stamboltsyan</a>
+                <a class="github-link" href="https://github.com/Michail-Konon">Michail Konon</a>
+            </div>
+            <div class="rss">
+                <img class="RSS" src="./main-assets/rs_school_js.svg">
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
