@@ -46,14 +46,14 @@ const baseConfig = {
     new ESLintPlugin({
       extensions: ['ts', 'js'],
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'src/asset'),
-          to: path.resolve(__dirname, '../dist/asset')
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, 'src/asset'),
+    //       to: path.resolve(__dirname, '../dist/asset')
+    //     },
+    //   ],
+    // }),
   ],
   experiments: {
     topLevelAwait: true
