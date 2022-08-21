@@ -1,6 +1,6 @@
 {
  "nomepage": "https://elf-ksenia.github.io/news-JS",
- "name": "newsjs",
+ "name": "rs-lang",
  "version": "1.0.0",
  "description": "",
  "main": "webpack.base.config.js",
@@ -18,7 +18,7 @@
   "url": ""
  },
  "keywords": [],
- "author": "Aleh Serhiyenia",
+ "author": "",
  "license": "ISC",
  "homepage": "",
  "devDependencies": {
