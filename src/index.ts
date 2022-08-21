@@ -1,4 +1,5 @@
 import './index.css';
+import './components/textbook/textbook';
 // import './components/autorization/autorization';
 const hamburgButton = document.querySelector('.hamburg-menu');
 const navHamburg = document.querySelector('.hamburg');
