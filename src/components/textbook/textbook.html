@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Textbook</title>
+    <script src="https://kit.fontawesome.com/44b579b210.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="textbook.css">
 </head>
+
 <body>
-    
+
+    <a href="#">Меню</a>
+    <a href="#">Аудиовызов</a>
+    <a href="#">Спринт</a>
+
+    <div class="group-inputs">
+        <input class="group" type="radio" name="group" id="0" checked="checked">
+        <label for="0">1</label>
+        <input class="group" type="radio" name="group" id="1">
+        <label for="1">2</label>
+        <input class="group" type="radio" name="group" id="2">
+        <label for="2">3</label>
+        <input class="group" type="radio" name="group" id="3">
+        <label for="3">4</label>
+        <input class="group" type="radio" name="group" id="4">
+        <label for="4">5</label>
+        <input class="group" type="radio" name="group" id="5">
+        <label for="5">6</label>
+    </div>
+
+    <div class="pagination">
+        <button class="page" id="prev">prev</button>
+        <button class="page" id="next">next</button>
+    </div>
+
+    <div class="content"></div>
+
+    <script src="textbook.js"></script>
 </body>
+
 </html>
