@@ -2,10 +2,6 @@
     display: flex;
 }
 
-#prev {
-    display: none;
-}
-
 .audio {
     display: none;
 }
