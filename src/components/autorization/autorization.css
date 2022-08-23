@@ -66,3 +66,9 @@ a {
 .hide {
     display: none;
 }
+
+.auth__reg,
+.auth__singin {
+    width: 50%;
+    margin: 0 auto;
+}
