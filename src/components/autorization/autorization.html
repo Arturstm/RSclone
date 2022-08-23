@@ -4,9 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="auth.css">
+    <script defer src="/auth.js"></script>
     <title>Document</title>
 </head>
+
 <body>
+    <section class="auth__reg">
+        <form action="https://rs-lang-179.herokuapp.com/users">
+            <div class="container">
+              <h1>Регистрация</h1>
+              <hr>
+              <label for="user"><b>Имя пользователя</b></label>
+              <input type="text" class="auth__user-input" placeholder="Имя пользователя" name="auth__user" required>
+          
+              <label for="email"><b>Почта</b></label>
+              <input type="email" class="auth__email-input" placeholder="Email" name="auth__email" required>
+          
+              <label for="pass"><b>Пароль</b></label>
+              <input type="password" class="auth__pass-input" placeholder="Пароль" name="auth__pass" required>
+          
+              <hr>
+          
+              <button type="submit" class="registerbtn">Создать аккаунт</button>
+            </div>
+            
+            <div class="container signin">
+              <p>Уже зарегистрированы?<a href="#" class="toLogin">Войти</a>.</p>
+            </div>
+          </form>
+          
+    </section>
+
+    <section class="auth__singin hide">
+        <form action="https://rs-lang-179.herokuapp.com/users">
+            <div class="container">
+              <h1>Вход</h1>
+              <hr>
+              <label for="user"><b>Имя пользователя</b></label>
+              <input type="text" class="auth__user-input" placeholder="Имя пользователя" name="auth__user" required>
+          
+              <label for="pass"><b>Пароль</b></label>
+              <input type="password" class="auth__pass-input" placeholder="Пароль" name="auth__pass" required>
+          
+              <hr>
+          
+              <button type="submit-signin" class="registerbtn">Войти</button>
+            </div>
+            
+            <div class="container signin">
+              <p>Перейти к <a href="#" class="toReg">Регестрации</a>.</p>
+            </div>
+          </form>
+          
+    </section>
     
 </body>
 </html>
