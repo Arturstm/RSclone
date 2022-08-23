@@ -172,35 +172,35 @@ function prevPage(p: number) {
 // https://rs-lang-179.herokuapp.com/doc/
 
 let isRendered = true;
-// const cards: Array<HTMLElement> = [];
 const chousenCards = document.createElement('div');
 chousenCards.classList.add('chousen-cards');
-// chousenCards.style.display = 'none';
-isRendered = await reRenderData(page, group);
-if (isRendered) {
-  Array.from(document.getElementsByClassName('card')).forEach((card) => {
-    (card as HTMLInputElement).onclick = function (event: Event) {
-      const target = event.target;
-      if ((target as HTMLInputElement).classList.contains('chouse-checkbox')) {
-        // cards.push(card as HTMLElement);
-        chousenCards.append(card.cloneNode(true));
-      }
-    };
-  });
-}
-
-(document.querySelector('.header-nav') as HTMLElement).onclick = function (event: Event) {
-  const target = event.target;
-  if ((target as HTMLElement).textContent === 'Словарь') {
-    (document.querySelector('.content') as HTMLElement).innerHTML = '';
-    (document.querySelector('.content') as HTMLElement).append(chousenCards);
-    (document.querySelector('.pagination') as HTMLDivElement).style.display = 'none';
-    (document.querySelector('.group-inputs') as HTMLDivElement).style.display = 'none';
-  }
-};
 
 (prev as HTMLElement).addEventListener('click', () => prevPage(page));
 (next as HTMLElement).addEventListener('click', () => nextPage(page));
+
+async function dictionary(p: number, g: number) {
+  isRendered = await reRenderData(p, g);
+  if (isRendered) {
+    Array.from(document.getElementsByClassName('card')).forEach((card) => {
+      (card as HTMLInputElement).onclick = function (event: Event) {
+        const target = event.target;
+        if ((target as HTMLInputElement).classList.contains('chouse-checkbox')) {
+          chousenCards.append(card.cloneNode(true));
+        }
+      };
+    });
+  }
+
+  (document.querySelector('.header-nav') as HTMLElement).onclick = function (event: Event) {
+    const target = event.target;
+    if ((target as HTMLElement).textContent === 'Словарь') {
+      (document.querySelector('.content') as HTMLElement).innerHTML = '';
+      (document.querySelector('.content') as HTMLElement).append(chousenCards);
+      (document.querySelector('.pagination') as HTMLDivElement).style.display = 'none';
+      (document.querySelector('.group-inputs') as HTMLDivElement).style.display = 'none';
+    }
+  };
+}
 
 window.onload = function () {
   currentGroup = Number(localStorage.getItem('currentGroup'));
@@ -214,4 +214,6 @@ window.onload = function () {
       element.setAttribute('checked', 'true');
     }
   });
+
+  dictionary(currentPage, currentGroup);
 };
