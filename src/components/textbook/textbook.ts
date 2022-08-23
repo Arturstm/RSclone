@@ -1,4 +1,5 @@
 import './textbook.css';
+// import './dictionary';
 const url = 'https://rs-lang-179.herokuapp.com/';
 let group = 0;
 let page = 0;
@@ -37,7 +38,7 @@ async function fetchData(p: number, g: number) {
   }
 }
 
-async function reRenderData(p: number, g: number) {
+export async function reRenderData(p: number, g: number) {
   const data = await fetchData(p, g);
   (document.querySelector('.content') as HTMLElement).innerHTML = '';
   data.forEach((item: ResponseItem) => {
@@ -74,6 +75,8 @@ async function reRenderData(p: number, g: number) {
     exampleAudio.classList.add('example-audio');
     const exampleTranslation = document.createElement('p');
     exampleTranslation.classList.add('example-translation');
+    const chouseBlock = document.createElement('div');
+    chouseBlock.classList.add('chouse-block');
     const chouseCheckbox = document.createElement('input');
     chouseCheckbox.setAttribute('type', 'checkbox');
     chouseCheckbox.classList.add('chouse-checkbox');
@@ -111,8 +114,9 @@ async function reRenderData(p: number, g: number) {
     textBlock.append(example);
     textBlock.append(exampleTranslation);
     textBlock.append(exampleAudio);
-    textBlock.append(chouseCheckbox);
-    textBlock.append(chouseLabel);
+    card.append(chouseBlock);
+    chouseBlock.append(chouseCheckbox);
+    chouseBlock.append(chouseLabel);
 
     audioIcon.addEventListener('click', (e: Event) => {
       let isPlaying = false;
@@ -125,6 +129,7 @@ async function reRenderData(p: number, g: number) {
       }
     });
   });
+  return true;
 }
 
 groupInputs.onclick = function (event: Event) {
@@ -162,14 +167,41 @@ function prevPage(p: number) {
   reRenderData(page, group);
 }
 
-// page = currentPage;
-// group = currentGroup;
-
 // mongodb+srv://elf888888888:Vtr250_2002@cluster0.9zjrt5z.mongodb.net/?retryWrites=true&w=majority
 
 // https://rs-lang-179.herokuapp.com/doc/
 
-// var reloaded  = function(){...} //страницу перезагрузили
+let isRendered = true;
+// const cards: Array<HTMLElement> = [];
+const chousenCards = document.createElement('div');
+chousenCards.classList.add('chousen-cards');
+// chousenCards.style.display = 'none';
+isRendered = await reRenderData(page, group);
+if (isRendered) {
+  Array.from(document.getElementsByClassName('card')).forEach((card) => {
+    (card as HTMLInputElement).onclick = function (event: Event) {
+      const target = event.target;
+      if ((target as HTMLInputElement).classList.contains('chouse-checkbox')) {
+        // cards.push(card as HTMLElement);
+        chousenCards.append(card.cloneNode(true));
+      }
+    };
+  });
+}
+
+(document.querySelector('.header-nav') as HTMLElement).onclick = function (event: Event) {
+  const target = event.target;
+  if ((target as HTMLElement).textContent === 'Словарь') {
+    (document.querySelector('.content') as HTMLElement).innerHTML = '';
+    (document.querySelector('.content') as HTMLElement).append(chousenCards);
+    (document.querySelector('.pagination') as HTMLDivElement).style.display = 'none';
+    (document.querySelector('.group-inputs') as HTMLDivElement).style.display = 'none';
+  }
+};
+
+(prev as HTMLElement).addEventListener('click', () => prevPage(page));
+(next as HTMLElement).addEventListener('click', () => nextPage(page));
+
 window.onload = function () {
   currentGroup = Number(localStorage.getItem('currentGroup'));
   currentPage = Number(localStorage.getItem('currentPage'));
@@ -182,6 +214,4 @@ window.onload = function () {
       element.setAttribute('checked', 'true');
     }
   });
-  (prev as HTMLElement).addEventListener('click', () => prevPage(page));
-  (next as HTMLElement).addEventListener('click', () => nextPage(page));
 };
