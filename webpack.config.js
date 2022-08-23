@@ -13,6 +13,10 @@ const baseConfig = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.scss$/i,
         use: ['style-loader', 'css-loader', "sass-loader"],
       },
@@ -42,6 +46,11 @@ const baseConfig = {
       filename: 'index.html',
       inject: false,
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/components/textbook/textbook.html'),
+      filename: 'textbook.html',
+      inject: false,
+    }),
     new CleanWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['ts', 'js'],
@@ -49,8 +58,8 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/asset'),
-          to: path.resolve(__dirname, '../dist/asset')
+          from: path.resolve(__dirname, 'src/main-assets'),
+          to: path.resolve(__dirname, '../dist/main-assets')
         },
       ],
     }),
