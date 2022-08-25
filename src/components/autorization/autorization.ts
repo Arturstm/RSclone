@@ -14,3 +14,4 @@ toSingIn.addEventListener('click', () => {
   login.classList.add('hide');
   registration.classList.remove('hide');
 });
+console.log('auto');

@@ -1,8 +1,10 @@
 import './index.css';
-const hamburgButton = document.querySelector('.hamburg-menu') as HTMLElement;
-const navHamburg = document.querySelector('.hamburg') as HTMLElement;
-
-hamburgButton.addEventListener('click', (e) => {
-  hamburgButton.classList.toggle('action');
-  navHamburg.classList.toggle('action');
-});
+import './components/autorization/autorization';
+const hamburgButton = document.querySelector('.hamburg-menu');
+const navHamburg = document.querySelector('.hamburg');
+if (hamburgButton) {
+  (hamburgButton as HTMLElement).addEventListener('click', (e) => {
+    (hamburgButton as HTMLElement).classList.toggle('action');
+    (navHamburg as HTMLElement).classList.toggle('action');
+  });
+}
