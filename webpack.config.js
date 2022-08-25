@@ -51,6 +51,26 @@ const baseConfig = {
       filename: 'textbook.html',
       inject: false,
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/components/autorization/autorization.html'),
+      filename: 'autorization.html',
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/components/audio-challange/audio-challange.html'),
+      filename: 'audio-challange.html',
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/components/stats/stats.html'),
+      filename: 'stats.html',
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/components/sprint/sprint.html'),
+      filename: 'sprint.html',
+      inject: false,
+    }),
     new CleanWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['ts', 'js'],

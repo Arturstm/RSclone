@@ -1,3 +1,5 @@
+import './autorization.css';
+
 const toRegistration = <HTMLElement>document.querySelector('.toReg');
 const toSingIn = <HTMLElement>document.querySelector('.toLogin');
 const registration = <HTMLElement>document.querySelector('.auth__reg');
