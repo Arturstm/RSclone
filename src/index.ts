@@ -1,5 +1,5 @@
 import './index.css';
-import './components/autorization/autorization';
+// import './components/autorization/autorization';
 const hamburgButton = document.querySelector('.hamburg-menu');
 const navHamburg = document.querySelector('.hamburg');
 if (hamburgButton) {

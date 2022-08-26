@@ -167,8 +167,8 @@ class LoginForm {
 
   loginUser(): void {
     logInUser({
-      password: (<HTMLInputElement> this.passwordField).value,
-      email: (<HTMLInputElement> this.emailField).value,
+      password: (this.passwordField as HTMLInputElement).value,
+      email: (this.emailField as HTMLInputElement).value,
     });
     document.getElementById('authorization-btn')?.remove();
   }
@@ -226,13 +226,13 @@ class RegistrationForm {
 
   async registerUser(): Promise<void> {
     await createUser({
-      name: (<HTMLInputElement> this.nameField).value,
-      email: (<HTMLInputElement> this.emailField).value,
-      password: (<HTMLInputElement> this.passwordField).value,
+      name: (this.nameField as HTMLInputElement).value,
+      email: (this.emailField as HTMLInputElement).value,
+      password: (this.passwordField as HTMLInputElement).value,
     });
     logInUser({
-      password: (<HTMLInputElement> this.passwordField).value,
-      email: (<HTMLInputElement> this.emailField).value,
+      password: (this.passwordField as HTMLInputElement).value,
+      email: (this.emailField as HTMLInputElement).value,
     });
   }
 
@@ -289,13 +289,13 @@ class Authorisation {
       }
 
       if (target.id === 'login-form-btn') {
-        (<RegistrationForm> this.auth.formReg).formContainer.style.display = 'none';
-        (<LoginForm> this.auth.formLog).formContainer.style.display = 'flex';
+        (this.auth.formReg as RegistrationForm).formContainer.style.display = 'none';
+        (this.auth.formLog as LoginForm).formContainer.style.display = 'flex';
       }
 
       if (target.id === 'registration-form-btn') {
-        (<RegistrationForm> this.auth.formReg).formContainer.style.display = 'flex';
-        (<LoginForm> this.auth.formLog).formContainer.style.display = 'none';
+        (this.auth.formReg as RegistrationForm).formContainer.style.display = 'flex';
+        (this.auth.formLog as LoginForm).formContainer.style.display = 'none';
       }
     });
   }
