@@ -1,13 +1,13 @@
 import './textbook.css';
 // import './dictionary';
-const url = 'https://rs-lang-179.herokuapp.com/';
+export const url = 'https://rs-lang-179.herokuapp.com/';
 let group = 0;
 let page = 0;
 let currentGroup: number;
 let currentPage: number;
 let currentPageNum: number;
 const pageNumber = document.querySelector('.page-number') as HTMLElement;
-interface ResponseItem {
+export interface ResponseItem {
   id: string;
   group: number;
   page: number;
@@ -29,7 +29,7 @@ const prev = document.querySelector('#prev');
 
 const groupInputs = document.querySelector('.group-inputs') as HTMLElement;
 
-async function fetchData(p: number, g: number) {
+export async function fetchData(p: number, g: number) {
   try {
     const response: Response = await fetch(`${url}words?group=${g}&page=${p}`);
     return await response.json();
@@ -38,106 +38,111 @@ async function fetchData(p: number, g: number) {
   }
 }
 
-export async function reRenderData(p: number, g: number) {
+async function reRenderData(p: number, g: number) {
   const data = await fetchData(p, g);
-  (document.querySelector('.content') as HTMLElement).innerHTML = '';
-  data.forEach((item: ResponseItem) => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    const textBlock = document.createElement('div');
-    textBlock.classList.add('text-block');
-    const wordBlock = document.createElement('div');
-    wordBlock.classList.add('word-block');
-    const img = document.createElement('img');
-    img.classList.add('img');
-    const word = document.createElement('span');
-    word.classList.add('word');
-    const transcription = document.createElement('span');
-    transcription.classList.add('transcription');
-    const translation = document.createElement('span');
-    translation.classList.add('translation');
-    const audioIcon = document.createElement('i');
-    audioIcon.classList.add('fa-solid');
-    audioIcon.classList.add('fa-volume-high');
-    const wordAudio = document.createElement('audio');
-    wordAudio.classList.add('audio');
-    const meanig = document.createElement('p');
-    meanig.classList.add('meaning');
-    const meaningAudio = document.createElement('audio');
-    meaningAudio.setAttribute('controls', 'true');
-    meaningAudio.classList.add('meaning-audio');
-    const meaningTranslation = document.createElement('p');
-    meaningTranslation.classList.add('meaning-translation');
-    const example = document.createElement('p');
-    example.classList.add('example');
-    const exampleAudio = document.createElement('audio');
-    exampleAudio.setAttribute('controls', 'true');
-    exampleAudio.classList.add('example-audio');
-    const exampleTranslation = document.createElement('p');
-    exampleTranslation.classList.add('example-translation');
-    const chouseBlock = document.createElement('div');
-    chouseBlock.classList.add('chouse-block');
-    const chouseCheckbox = document.createElement('input');
-    chouseCheckbox.setAttribute('type', 'checkbox');
-    chouseCheckbox.classList.add('chouse-checkbox');
-    const chouseLabel = document.createElement('label');
-    chouseLabel.textContent = 'Добавить в словарь';
-    chouseLabel.classList.add('chouse-label');
+  if (document.querySelector('.content')) {
+    (document.querySelector('.content') as HTMLElement).innerHTML = '';
 
-    img.setAttribute('src', `${url + item.image}`);
-    word.textContent = `${item.word}`;
-    transcription.textContent = `${item.transcription}`;
-    translation.textContent = `${item.wordTranslate}`;
-    wordAudio.setAttribute('src', `${url + item.audio}`);
-    meanig.innerHTML = `${item.textMeaning}`;
-    example.innerHTML = `${item.textExample}`;
-    meaningAudio.setAttribute('src', `${url + item.audioMeaning}`);
-    exampleAudio.setAttribute('src', `${url + item.audioExample}`);
-    meaningTranslation.textContent = `${item.textMeaningTranslate}`;
-    exampleTranslation.textContent = `${item.textExampleTranslate}`;
+    data.forEach((item: ResponseItem) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      const textBlock = document.createElement('div');
+      textBlock.classList.add('text-block');
+      const wordBlock = document.createElement('div');
+      wordBlock.classList.add('word-block');
+      const img = document.createElement('img');
+      img.classList.add('img');
+      const word = document.createElement('span');
+      word.classList.add('word');
+      const transcription = document.createElement('span');
+      transcription.classList.add('transcription');
+      const translation = document.createElement('span');
+      translation.classList.add('translation');
+      const audioIcon = document.createElement('i');
+      audioIcon.classList.add('fa-solid');
+      audioIcon.classList.add('fa-volume-high');
+      const wordAudio = document.createElement('audio');
+      wordAudio.classList.add('audio');
+      const meanig = document.createElement('p');
+      meanig.classList.add('meaning');
+      const meaningAudio = document.createElement('audio');
+      meaningAudio.setAttribute('controls', 'true');
+      meaningAudio.classList.add('meaning-audio');
+      const meaningTranslation = document.createElement('p');
+      meaningTranslation.classList.add('meaning-translation');
+      const example = document.createElement('p');
+      example.classList.add('example');
+      const exampleAudio = document.createElement('audio');
+      exampleAudio.setAttribute('controls', 'true');
+      exampleAudio.classList.add('example-audio');
+      const exampleTranslation = document.createElement('p');
+      exampleTranslation.classList.add('example-translation');
+      const chouseBlock = document.createElement('div');
+      chouseBlock.classList.add('chouse-block');
+      const chouseCheckbox = document.createElement('input');
+      chouseCheckbox.setAttribute('type', 'checkbox');
+      chouseCheckbox.classList.add('chouse-checkbox');
+      const chouseLabel = document.createElement('label');
+      chouseLabel.textContent = 'Добавить в словарь';
+      chouseLabel.classList.add('chouse-label');
 
-    (document.querySelector('.content') as HTMLElement).append(card);
-    chouseCheckbox.setAttribute('id', `${item.id}`);
-    chouseLabel.setAttribute('id', `${item.id}`);
+      img.setAttribute('src', `${url + item.image}`);
+      word.textContent = `${item.word}`;
+      transcription.textContent = `${item.transcription}`;
+      translation.textContent = `${item.wordTranslate}`;
+      wordAudio.setAttribute('src', `${url + item.audio}`);
+      meanig.innerHTML = `${item.textMeaning}`;
+      example.innerHTML = `${item.textExample}`;
+      meaningAudio.setAttribute('src', `${url + item.audioMeaning}`);
+      exampleAudio.setAttribute('src', `${url + item.audioExample}`);
+      meaningTranslation.textContent = `${item.textMeaningTranslate}`;
+      exampleTranslation.textContent = `${item.textExampleTranslate}`;
 
-    card.append(img);
-    card.append(textBlock);
-    textBlock.append(wordBlock);
-    wordBlock.append(word);
-    wordBlock.append(transcription);
-    wordBlock.append(translation);
-    wordBlock.append(wordAudio);
-    wordBlock.append(audioIcon);
-    textBlock.append(meanig);
-    textBlock.append(meaningTranslation);
-    textBlock.append(meaningAudio);
-    textBlock.append(example);
-    textBlock.append(exampleTranslation);
-    textBlock.append(exampleAudio);
-    card.append(chouseBlock);
-    chouseBlock.append(chouseCheckbox);
-    chouseBlock.append(chouseLabel);
+      (document.querySelector('.content') as HTMLElement).append(card);
+      chouseCheckbox.setAttribute('id', `${item.id}`);
+      chouseLabel.setAttribute('id', `${item.id}`);
 
-    audioIcon.addEventListener('click', (e: Event) => {
-      let isPlaying = false;
-      if (isPlaying) {
-        wordAudio.pause();
-        isPlaying = false;
-      } else {
-        wordAudio.play();
-        isPlaying = true;
-      }
+      card.append(img);
+      card.append(textBlock);
+      textBlock.append(wordBlock);
+      wordBlock.append(word);
+      wordBlock.append(transcription);
+      wordBlock.append(translation);
+      wordBlock.append(wordAudio);
+      wordBlock.append(audioIcon);
+      textBlock.append(meanig);
+      textBlock.append(meaningTranslation);
+      textBlock.append(meaningAudio);
+      textBlock.append(example);
+      textBlock.append(exampleTranslation);
+      textBlock.append(exampleAudio);
+      card.append(chouseBlock);
+      chouseBlock.append(chouseCheckbox);
+      chouseBlock.append(chouseLabel);
+
+      audioIcon.addEventListener('click', (e: Event) => {
+        let isPlaying = false;
+        if (isPlaying) {
+          wordAudio.pause();
+          isPlaying = false;
+        } else {
+          wordAudio.play();
+          isPlaying = true;
+        }
+      });
     });
-  });
+  }
   return true;
 }
 
-groupInputs.onclick = function (event: Event) {
-  const target = event.target;
-  group = Number((target as HTMLInputElement).id);
-  localStorage.setItem('currentGroup', `${group}`);
-  reRenderData(page, group);
-};
+if (groupInputs) {
+  groupInputs.onclick = function (event: Event) {
+    const target = event.target;
+    group = Number((target as HTMLInputElement).id);
+    localStorage.setItem('currentGroup', `${group}`);
+    reRenderData(page, group);
+  };
+}
 
 function nextPage(p: number) {
   page = p;
@@ -174,9 +179,12 @@ function prevPage(p: number) {
 let isRendered = true;
 const chousenCards = document.createElement('div');
 chousenCards.classList.add('chousen-cards');
-
-(prev as HTMLElement).addEventListener('click', () => prevPage(page));
-(next as HTMLElement).addEventListener('click', () => nextPage(page));
+if (prev) {
+  (prev as HTMLElement).addEventListener('click', () => prevPage(page));
+}
+if (next) {
+  (next as HTMLElement).addEventListener('click', () => nextPage(page));
+}
 
 async function dictionary(p: number, g: number) {
   isRendered = await reRenderData(p, g);
@@ -206,7 +214,9 @@ window.onload = function () {
   currentGroup = Number(localStorage.getItem('currentGroup'));
   currentPage = Number(localStorage.getItem('currentPage'));
   currentPageNum = Number(localStorage.getItem('currentPageNum'));
-  pageNumber.innerHTML = currentPageNum.toString();
+  if (pageNumber) {
+    pageNumber.innerHTML = currentPageNum.toString();
+  }
   page = currentPage;
   reRenderData(currentPage, currentGroup);
   Array.from(document.getElementsByClassName('group-input')).forEach((element) => {
