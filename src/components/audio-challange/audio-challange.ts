@@ -20,10 +20,10 @@ async function getChallangeContent(l: number) {
     });
   }
   challangeContent.innerHTML = '';
-  let currentItem = null;
+  let currentItem = data[0];
   currentItem = data[getRandomItem(data.length)];
   const soundBlock = document.createElement('div');
-  soundBlock.classList.add('challanege__sound-block');
+  soundBlock.classList.add('challange__sound-block');
   const soundIcon = document.createElement('i');
   soundIcon.classList.add('fa-solid');
   soundIcon.classList.add('fa-volume-high');
@@ -84,9 +84,27 @@ async function getChallangeContent(l: number) {
     }
   });
 
+  wordVersionsBlock.onclick = function (event: Event) {
+    const target = event.target;
+    if ((target as HTMLElement).classList.contains('challanege__word-version')) {
+      challangeContent.append(answerBlock);
+      nextBtn.textContent = 'Дальше';
+      nextBtn.classList.remove('btn-cancel');
+      nextBtn.classList.add('btn-submit');
+      if ((target as HTMLElement).textContent === (currentItem as ResponseItem).word) {
+        let currentChallangeScore = Number(localStorage.getItem('audioChallangeScore'));
+        currentChallangeScore++;
+        localStorage.setItem('audioChallangeScore', `${currentChallangeScore}`);
+        console.log(currentChallangeScore);
+      }
+      wordVersionsBlock.innerHTML = '';
+    }
+  };
+
   nextBtn.addEventListener('click', (e: Event) => {
     if (nextBtn.classList.contains('btn-cancel')) {
       challangeContent.append(answerBlock);
+      wordVersionsBlock.innerHTML = '';
       nextBtn.textContent = 'Дальше';
       nextBtn.classList.remove('btn-cancel');
       nextBtn.classList.add('btn-submit');

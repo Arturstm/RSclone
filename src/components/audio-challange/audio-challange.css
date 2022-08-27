@@ -25,3 +25,11 @@
 .btn-confirm {
     margin-left: 50px;
 }
+
+.challanege__word-version {
+    cursor: pointer;
+}
+
+.challange__sound-block i {
+    cursor: pointer; 
+}
