@@ -1,11 +1,11 @@
 import './audio-challange.css';
 import { fetchData, url, ResponseItem } from '../textbook/textbook';
-import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
+// import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
 const startChallange = document.querySelector('#start-challange');
 const challangeContent = document.querySelector('.challange-content') as HTMLElement;
-const challangeInputs = document.querySelector('.challange-level__inputs');
+const challangeInputs = Array.from(document.getElementsByClassName('.challange-level__radio-btn'));
 let level = 0;
-const data: Array<ResponseItem> = [];
+let data: Array<ResponseItem> = [];
 function getRandomItem(max: number) {
   return Math.floor(Math.random() * max);
 }
@@ -13,11 +13,13 @@ function shuffle(array: Array<string>) {
   return array.sort(() => Math.random() - 0.5);
 }
 async function getChallangeContent(l: number) {
+  const currentData: Array<ResponseItem> = [];
   for (let i = 0; i < 30; i++) {
     const dataFromOnePage = await fetchData(i, l);
     dataFromOnePage.forEach((item: ResponseItem) => {
-      data.push(item);
+      currentData.push(item);
     });
+    data = currentData;
   }
   challangeContent.innerHTML = '';
   let currentItem = data[0];
@@ -40,7 +42,7 @@ async function getChallangeContent(l: number) {
   const answerVersions: Array<string> = [];
   answerVersions.push(currentItem.word);
   console.log(answerVersions);
-  for (let i = 0; i <= 4; i++) {
+  for (let i = 0; i < 4; i++) {
     answerVersions.push(data[getRandomItem(data.length)].word);
   }
   console.log(answerVersions);
@@ -118,18 +120,14 @@ async function getChallangeContent(l: number) {
   console.log(data);
 }
 
-if (challangeInputs) {
-  (challangeInputs as HTMLElement).onclick = function (event: Event) {
-    const target = event.target;
-    level = Number((target as HTMLInputElement).id);
-    // localStorage.setItem('currentLevel', `${level}`);
-    getChallangeContent(level);
-  };
-}
-
 if (startChallange) {
   (startChallange as HTMLButtonElement).addEventListener('click', (e) => {
     (document.querySelector('.challange-level') as HTMLElement).innerHTML = '';
+    challangeInputs.forEach((input) => {
+      if ((input as HTMLInputElement).checked) {
+        level = Number(input.id);
+      }
+    });
     getChallangeContent(level);
   });
 }
