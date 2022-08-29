@@ -41,7 +41,7 @@ export async function fetchData(p: number, g: number) {
   }
 }
 
-async function reRenderData(p: number, g: number) {
+export async function reRenderData(p: number, g: number) {
   const data = await fetchData(p, g);
   if (document.querySelector('.content')) {
     (document.querySelector('.content') as HTMLElement).innerHTML = '';
