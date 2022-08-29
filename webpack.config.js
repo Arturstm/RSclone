@@ -67,8 +67,8 @@ const baseConfig = {
       inject: false,
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './src/components/sprint/sprint.html'),
-      filename: 'sprint.html',
+      template: path.resolve(__dirname, './src/components/dictionary/dictionary.html'),
+      filename: 'dictionary.html',
       inject: false,
     }),
     new CleanWebpackPlugin(),

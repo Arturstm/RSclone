@@ -1,5 +1,8 @@
 import './textbook.css';
-// import './dictionary';
+
+// mongodb+srv://elf888888888:Vtr250_2002@cluster0.9zjrt5z.mongodb.net/?retryWrites=true&w=majority
+// https://rs-lang-179.herokuapp.com/doc/
+
 export const url = 'https://rs-lang-179.herokuapp.com/';
 let group = 0;
 let page = 0;
@@ -38,7 +41,7 @@ export async function fetchData(p: number, g: number) {
   }
 }
 
-async function reRenderData(p: number, g: number) {
+export async function reRenderData(p: number, g: number) {
   const data = await fetchData(p, g);
   if (document.querySelector('.content')) {
     (document.querySelector('.content') as HTMLElement).innerHTML = '';
@@ -171,14 +174,17 @@ function prevPage(p: number) {
   }
   reRenderData(page, group);
 }
-
-// mongodb+srv://elf888888888:Vtr250_2002@cluster0.9zjrt5z.mongodb.net/?retryWrites=true&w=majority
-
-// https://rs-lang-179.herokuapp.com/doc/
+export interface CardObjects {
+  id: string;
+  content: string;
+}
 
 let isRendered = true;
-const chousenCards = document.createElement('div');
-chousenCards.classList.add('chousen-cards');
+export let chousenCards: Array<CardObjects> = [];
+chousenCards = JSON.parse(localStorage.getItem('chousen-cards') as string);
+// const chousenCards = document.createElement('div');
+// chousenCards.classList.add('chousen-cards');
+// chousenCards.innerHTML = JSON.parse(localStorage.getItem('chousen-cards') as string);
 if (prev) {
   (prev as HTMLElement).addEventListener('click', () => prevPage(page));
 }
@@ -186,28 +192,25 @@ if (next) {
   (next as HTMLElement).addEventListener('click', () => nextPage(page));
 }
 
-async function dictionary(p: number, g: number) {
+export async function dictionary(p: number, g: number) {
   isRendered = await reRenderData(p, g);
   if (isRendered) {
     Array.from(document.getElementsByClassName('card')).forEach((card) => {
       (card as HTMLInputElement).onclick = function (event: Event) {
         const target = event.target;
         if ((target as HTMLInputElement).classList.contains('chouse-checkbox')) {
-          chousenCards.append(card.cloneNode(true));
+          // const wordsIdList = [];
+          // wordsIdList.push((target as HTMLElement).id);
+          // chousenCards.append(card.cloneNode(true));
+          if ((target as HTMLInputElement).checked) {
+            chousenCards.push({ id: (target as HTMLElement).id, content: JSON.stringify(card.innerHTML) });
+          }
+          // localStorage.removeItem('chousen-cards');
+          localStorage.setItem('chousen-cards', JSON.stringify(chousenCards));
         }
       };
     });
   }
-
-  (document.querySelector('.header-nav') as HTMLElement).onclick = function (event: Event) {
-    const target = event.target;
-    if ((target as HTMLElement).textContent === 'Словарь') {
-      (document.querySelector('.content') as HTMLElement).innerHTML = '';
-      (document.querySelector('.content') as HTMLElement).append(chousenCards);
-      (document.querySelector('.pagination') as HTMLDivElement).style.display = 'none';
-      (document.querySelector('.group-inputs') as HTMLDivElement).style.display = 'none';
-    }
-  };
 }
 
 window.onload = function () {
