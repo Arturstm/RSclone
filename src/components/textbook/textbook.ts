@@ -181,10 +181,11 @@ export interface CardObjects {
 
 let isRendered = true;
 export let chousenCards: Array<CardObjects> = [];
-chousenCards = JSON.parse(localStorage.getItem('chousen-cards') as string);
-// const chousenCards = document.createElement('div');
-// chousenCards.classList.add('chousen-cards');
-// chousenCards.innerHTML = JSON.parse(localStorage.getItem('chousen-cards') as string);
+
+if (localStorage.getItem('chousen-cards')) {
+  chousenCards = JSON.parse(localStorage.getItem('chousen-cards') as string);
+}
+
 if (prev) {
   (prev as HTMLElement).addEventListener('click', () => prevPage(page));
 }
@@ -199,13 +200,9 @@ export async function dictionary(p: number, g: number) {
       (card as HTMLInputElement).onclick = function (event: Event) {
         const target = event.target;
         if ((target as HTMLInputElement).classList.contains('chouse-checkbox')) {
-          // const wordsIdList = [];
-          // wordsIdList.push((target as HTMLElement).id);
-          // chousenCards.append(card.cloneNode(true));
           if ((target as HTMLInputElement).checked) {
             chousenCards.push({ id: (target as HTMLElement).id, content: JSON.stringify(card.innerHTML) });
           }
-          // localStorage.removeItem('chousen-cards');
           localStorage.setItem('chousen-cards', JSON.stringify(chousenCards));
         }
       };
