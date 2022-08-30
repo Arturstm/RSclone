@@ -1,7 +1,9 @@
 import './dictionary.css';
+import '../textbook/textbook.css';
 import { chousenCards, CardObjects } from '../textbook/textbook';
 
 const dictContent = document.querySelector('.dictionary-content');
+// (dictContent as HTMLElement).classList.add('content');
 const deleteItems: Array<string> = [];
 let filteredChousenCards: Array<CardObjects> = [];
 if (localStorage.getItem('chousen-cards')) {
@@ -19,7 +21,7 @@ if (chousenCards) {
 if (dictContent) {
   filteredChousenCards.forEach((item) => {
     const dictCard = document.createElement('div');
-    const audioIcons = document.getElementsByClassName('fa-volume-high');
+    // dictCard.classList.add('card');
     dictCard.innerHTML = JSON.parse(item.content);
     dictContent.append(dictCard);
     const deleteFromDict = document.getElementsByClassName('chouse-checkbox');
@@ -36,40 +38,20 @@ if (dictContent) {
       if ((target as HTMLInputElement).checked) {
         deleteItems.push((target as HTMLElement).id);
         if ((item.id = (target as HTMLElement).id)) {
-          console.log(item);
           filteredChousenCards.splice(filteredChousenCards.indexOf(item), 1);
           localStorage.setItem('chousen-cards', JSON.stringify(filteredChousenCards));
-          console.log(JSON.parse(localStorage.getItem('chousen-cards') as string));
+        }
+      }
+      if ((target as HTMLElement).classList.contains('fa-volume-high')) {
+        let isPlaying = false;
+        if (isPlaying) {
+          ((target as HTMLElement).previousElementSibling as HTMLAudioElement).pause();
+          isPlaying = false;
+        } else {
+          ((target as HTMLElement).previousElementSibling as HTMLAudioElement).play();
+          isPlaying = true;
         }
       }
     };
-    // Array.from(audioIcons).forEach((audioIcon) => {
-    //   audioIcon.addEventListener('click', (e: Event) => {
-    //     let isPlaying = false;
-    //     if (isPlaying) {
-    //       wordAudio.pause();
-    //       isPlaying = false;
-    //     } else {
-    //       wordAudio.play();
-    //       isPlaying = true;
-    //     }
-    //   });
-    // })
   });
 }
-
-// if (dictContent) {
-//   filteredChousenCards.forEach((item) => {
-//     const dictCard = document.createElement('div');
-//     const audioIcons = document.getElementsByClassName('fa-volume-high');
-//     dictCard.innerHTML = JSON.parse(item.content);
-//     dictContent.append(dictCard);
-//     const deleteFromDict = document.getElementsByClassName('chouse-checkbox');
-//     Array.from(deleteFromDict).forEach((checkbox) => {
-//       checkbox.classList.remove('chouse-checkbox');
-//       checkbox.classList.add('delete-checkbox');
-//     });
-//     const deleteFromDictLabels = document.getElementsByClassName('chouse-label');
-//     Array.from(deleteFromDictLabels).forEach((label) => {
-//       label.textContent = 'Отметить как выученное';
-//     });
