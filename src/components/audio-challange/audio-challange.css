@@ -26,10 +26,14 @@
     margin-left: 50px;
 }
 
-.challanege__word-version {
+.challange__word-version {
     cursor: pointer;
 }
 
 .challange__sound-block i {
     cursor: pointer; 
+}
+
+.challange__answer-block i {
+    display: block;
 }

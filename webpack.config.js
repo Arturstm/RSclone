@@ -71,6 +71,11 @@ const baseConfig = {
       filename: 'dictionary.html',
       inject: false,
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/components/sprint/sprint.html'),
+      filename: 'sprint.html',
+      inject: false,
+    }),
     new CleanWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['ts', 'js'],
