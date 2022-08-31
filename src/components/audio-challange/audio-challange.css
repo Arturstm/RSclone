@@ -25,3 +25,17 @@
 .btn-confirm {
     margin-left: 50px;
 }
+<<<<<<< HEAD
+=======
+
+.challange__word-version {
+    cursor: pointer;
+}
+
+.challange__sound-block i {
+    cursor: pointer; 
+}
+
+.challange__answer-block i {
+    display: block;
+}

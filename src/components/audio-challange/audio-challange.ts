@@ -5,11 +5,11 @@ const startChallange = document.querySelector('#start-challange');
 const challangeContent = document.querySelector('.challange-content') as HTMLElement;
 const challangeInputs = document.querySelector('.challange-level__inputs');
 let level = 0;
-const data: Array<ResponseItem> = [];
-function getRandomItem(max: number) {
+let data: Array<ResponseItem> = [];
+export function getRandomItem(max: number) {
   return Math.floor(Math.random() * max);
 }
-function shuffle(array: Array<string>) {
+export function shuffle(array: Array<string>) {
   return array.sort(() => Math.random() - 0.5);
 }
 async function getChallangeContent(l: number) {
@@ -33,9 +33,9 @@ async function getChallangeContent(l: number) {
   challangeSound.classList.add('challange__sound');
   soundBlock.append(challangeSound);
   const wordVersionsBlock = document.createElement('div');
-  wordVersionsBlock.classList.add('challanege__word-versions-block');
+  wordVersionsBlock.classList.add('challange__word-versions-block');
   const wordVersions = document.createElement('div');
-  wordVersions.classList.add('challanege__word-version');
+  wordVersions.classList.add('challange__word-version');
   challangeContent.append(wordVersionsBlock);
   const answerVersions: Array<string> = [];
   answerVersions.push(currentItem.word);
@@ -60,6 +60,8 @@ async function getChallangeContent(l: number) {
   nextBlock.append(nextBtn);
   const answerBlock = document.createElement('div');
   answerBlock.classList.add('challange__answer-block');
+  const challangeResultIcon = document.createElement('i');
+  answerBlock.append(challangeResultIcon);
   const answerImg = document.createElement('img');
   answerImg.classList.add('challange__answer-img');
   answerBlock.append(answerImg);
@@ -67,10 +69,10 @@ async function getChallangeContent(l: number) {
   answerWord.classList.add('challange__answer-word');
   answerBlock.append(answerWord);
   const answerTranscription = document.createElement('p');
-  answerTranscription.classList.add('challanege__answer-transcription');
+  answerTranscription.classList.add('challange__answer-transcription');
   answerBlock.append(answerTranscription);
   const answerTranslation = document.createElement('p');
-  answerTranslation.classList.add('challanege__answer-translation');
+  answerTranslation.classList.add('challange__answer-translation');
   answerBlock.append(answerTranslation);
 
   soundIcon.addEventListener('click', (e: Event) => {
@@ -83,6 +85,28 @@ async function getChallangeContent(l: number) {
       isPlaying = true;
     }
   });
+
+  wordVersionsBlock.onclick = function (event: Event) {
+    const target = event.target;
+    if ((target as HTMLElement).classList.contains('challange__word-version')) {
+      challangeContent.append(answerBlock);
+      nextBtn.textContent = 'Дальше';
+      nextBtn.classList.remove('btn-cancel');
+      nextBtn.classList.add('btn-submit');
+      if ((target as HTMLElement).textContent === (currentItem as ResponseItem).word) {
+        let currentChallangeScore = Number(localStorage.getItem('audioChallangeScore'));
+        currentChallangeScore++;
+        localStorage.setItem('audioChallangeScore', `${currentChallangeScore}`);
+        challangeResultIcon.classList.add('fa-solid');
+        challangeResultIcon.classList.add('fa-check');
+        console.log(currentChallangeScore);
+      } else {
+        challangeResultIcon.classList.add('fa-solid');
+        challangeResultIcon.classList.add('fa-xmark');
+      }
+      wordVersionsBlock.innerHTML = '';
+    }
+  };
 
   nextBtn.addEventListener('click', (e: Event) => {
     if (nextBtn.classList.contains('btn-cancel')) {

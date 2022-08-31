@@ -1,4 +1,3 @@
-
 import './autorization.scss';
 
 const loginLayout = `
