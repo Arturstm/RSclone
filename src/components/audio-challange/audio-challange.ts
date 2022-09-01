@@ -1,11 +1,15 @@
 import './audio-challange.css';
 import { fetchData, url, ResponseItem } from '../textbook/textbook';
 import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
+// import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
 const startChallange = document.querySelector('#start-challange');
 const challangeContent = document.querySelector('.challange-content') as HTMLElement;
-const challangeInputs = document.querySelector('.challange-level__inputs');
+const challangeInputs = Array.from(document.getElementsByClassName('.challange-level__radio-btn'));
 let level = 0;
+let counter = 0;
 let data: Array<ResponseItem> = [];
+let correctWords: Array<string> = [];
+let mistakes: Array<string> = [];
 export function getRandomItem(max: number) {
   return Math.floor(Math.random() * max);
 }
@@ -13,17 +17,23 @@ export function shuffle(array: Array<string>) {
   return array.sort(() => Math.random() - 0.5);
 }
 async function getChallangeContent(l: number) {
+  const currentData: Array<ResponseItem> = [];
   for (let i = 0; i < 30; i++) {
     const dataFromOnePage = await fetchData(i, l);
     dataFromOnePage.forEach((item: ResponseItem) => {
-      data.push(item);
+      currentData.push(item);
     });
+    data = currentData;
   }
   challangeContent.innerHTML = '';
-  let currentItem = null;
+  let currentItem = data[0];
   currentItem = data[getRandomItem(data.length)];
+  const counterSpan = document.createElement('span');
+  counterSpan.classList.add('challange__counter-span');
+  counterSpan.textContent = `${20 - counter}`;
+  challangeContent.append(counterSpan);
   const soundBlock = document.createElement('div');
-  soundBlock.classList.add('challanege__sound-block');
+  soundBlock.classList.add('challange__sound-block');
   const soundIcon = document.createElement('i');
   soundIcon.classList.add('fa-solid');
   soundIcon.classList.add('fa-volume-high');
@@ -40,7 +50,7 @@ async function getChallangeContent(l: number) {
   const answerVersions: Array<string> = [];
   answerVersions.push(currentItem.word);
   console.log(answerVersions);
-  for (let i = 0; i <= 4; i++) {
+  for (let i = 0; i < 4; i++) {
     answerVersions.push(data[getRandomItem(data.length)].word);
   }
   console.log(answerVersions);
@@ -74,6 +84,39 @@ async function getChallangeContent(l: number) {
   const answerTranslation = document.createElement('p');
   answerTranslation.classList.add('challange__answer-translation');
   answerBlock.append(answerTranslation);
+  const resultBlock = document.createElement('div');
+  resultBlock.classList.add('challange__result-block');
+  const resultMistakes = document.createElement('p');
+  resultMistakes.classList.add('challange__result-mistakes');
+  resultBlock.append(resultMistakes);
+  const mistakesList = document.createElement('ul');
+  mistakesList.classList.add('challange__mistakes-list');
+  resultBlock.append(mistakesList);
+  const resultRight = document.createElement('p');
+  resultRight.classList.add('challange__result-right');
+  resultBlock.append(resultRight);
+  const correctWordsList = document.createElement('ul');
+  correctWordsList.classList.add('challange__correct-words');
+  resultBlock.append(correctWordsList);
+  const resultBtnBlock = document.createElement('div');
+  resultBlock.classList.add('challange__result-buttons');
+  resultBlock.append(resultBtnBlock);
+  const continueBtn = document.createElement('button');
+  continueBtn.classList.add('btn');
+  continueBtn.classList.add('btn-submit');
+  continueBtn.textContent = 'Ещё раз';
+  resultBtnBlock.append(continueBtn);
+  const finishBtn = document.createElement('button');
+  finishBtn.classList.add('btn');
+  finishBtn.classList.add('btn-cancel');
+  finishBtn.textContent = 'Закончить игру';
+  resultBtnBlock.append(finishBtn);
+
+  challangeSound.setAttribute('src', `${url + currentItem.audio}`);
+  answerWord.textContent = `${currentItem.word}`;
+  answerTranscription.textContent = `${currentItem.transcription}`;
+  answerTranslation.textContent = `${currentItem.wordTranslate}`;
+  answerImg.setAttribute('src', `${url + currentItem.image}`);
 
   soundIcon.addEventListener('click', (e: Event) => {
     let isPlaying = false;
@@ -99,10 +142,11 @@ async function getChallangeContent(l: number) {
         localStorage.setItem('audioChallangeScore', `${currentChallangeScore}`);
         challangeResultIcon.classList.add('fa-solid');
         challangeResultIcon.classList.add('fa-check');
-        console.log(currentChallangeScore);
+        correctWords.push(currentItem.word);
       } else {
         challangeResultIcon.classList.add('fa-solid');
         challangeResultIcon.classList.add('fa-xmark');
+        mistakes.push(currentItem.word);
       }
       wordVersionsBlock.innerHTML = '';
     }
@@ -111,31 +155,60 @@ async function getChallangeContent(l: number) {
   nextBtn.addEventListener('click', (e: Event) => {
     if (nextBtn.classList.contains('btn-cancel')) {
       challangeContent.append(answerBlock);
+      wordVersionsBlock.innerHTML = '';
       nextBtn.textContent = 'Дальше';
       nextBtn.classList.remove('btn-cancel');
       nextBtn.classList.add('btn-submit');
-    } else getChallangeContent(level);
+      mistakes.push(currentItem.word);
+    } else if (nextBtn.classList.contains('btn-submit')) {
+      (nextBtn as HTMLButtonElement).disabled = true;
+      counter++;
+      if (counter < 20) {
+        getChallangeContent(level);
+      } else {
+        challangeContent.innerHTML = '';
+        resultRight.textContent = `Правильных ответов: ${localStorage.getItem('audioChallangeScore')}`;
+        correctWords.forEach((word) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = word;
+          correctWordsList.append(listItem);
+        });
+        resultMistakes.textContent = `Ошибок: ${20 - Number(localStorage.getItem('audioChallangeScore'))}`;
+        mistakes.forEach((word) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = word;
+          mistakesList.append(listItem);
+        });
+        challangeContent.append(resultBlock);
+        counter = 0;
+        localStorage.removeItem('audioChallangeScore');
+        mistakes = [];
+        correctWords = [];
+      }
+      console.log(counter);
+    }
   });
-  challangeSound.setAttribute('src', `${url + currentItem.audio}`);
-  answerWord.textContent = `${currentItem.word}`;
-  answerTranscription.textContent = `${currentItem.transcription}`;
-  answerTranslation.textContent = `${currentItem.wordTranslate}`;
-  answerImg.setAttribute('src', `${url + currentItem.image}`);
-  console.log(data);
-}
-
-if (challangeInputs) {
-  (challangeInputs as HTMLElement).onclick = function (event: Event) {
-    const target = event.target;
-    level = Number((target as HTMLInputElement).id);
-    // localStorage.setItem('currentLevel', `${level}`);
-    getChallangeContent(level);
-  };
+  if (resultBtnBlock) {
+    continueBtn.addEventListener('click', (e: Event) => {
+      (continueBtn as HTMLButtonElement).disabled = true;
+      getChallangeContent(level);
+    });
+    finishBtn.addEventListener('click', (e: Event) => {
+      (finishBtn as HTMLButtonElement).disabled = true;
+      location.reload();
+    });
+  }
 }
 
 if (startChallange) {
   (startChallange as HTMLButtonElement).addEventListener('click', (e) => {
+    (startChallange as HTMLButtonElement).disabled = true;
     (document.querySelector('.challange-level') as HTMLElement).innerHTML = '';
+    challangeInputs.forEach((input) => {
+      if ((input as HTMLInputElement).checked) {
+        level = Number(input.id);
+      }
+    });
     getChallangeContent(level);
   });
 }
