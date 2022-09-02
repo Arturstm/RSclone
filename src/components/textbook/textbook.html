@@ -2,94 +2,88 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Textbook</title>
-  <script src="https://kit.fontawesome.com/44b579b210.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textbook</title>
+    <script src="https://kit.fontawesome.com/44b579b210.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <header>
-    <div class="container header-container">
-      <div class="header-nav">
-        <div class="hamburg-menu"></div>
-        <nav class="hamburg">
-          <ul class="hamburglist">
-            <li class="hamburgitem"><a class="ham-link" href="./textbook.html">Учебник</a></li>
-            <li class="hamburgitem"><a class="ham-link" href="./components/stats/stats.html">Статистика</a>
-            <li class="hamburgitem"><a class="ham-link" href="./dictionary.html">Словарь</a>
-            </li>
-            <li class="hamburgitem"><a class="ham-link" href="./components/games/games.html">Игры</a>
-            </li>
-            <li class="hamburgitem"><a class="ham-link" href="./components/autorization/autorization.html">Вход</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="logoheader">
-          <a class="nav-link" href="./index.html"><img src="./main-assets/logo.png" class="logo"></a>
-          <div class="menu">
-            <nav class="navbar">
-              <ul class="navlist">
-                <li class="navitem"><a class="nav-link" href="./textbook.html">Учебник</a></li>
-                <li class="navitem"><a class="nav-link" href="./components/stats/stats.html">Статистика</a>
-                </li>
-                <li class="navitem"><a class="nav-link" href="./dictionary.html">Словарь</a>
-                </li>
-                <li class="navitem"><a class="nav-link" href="./components/games/games.html">Игры</a>
-                </li>
-                <li class="navitem"><a class="nav-link auth" href="./components/autorization/autorization.html">Вход</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+    <header>
+        <div class="container header-container">
+            <div class="header-nav">
+                <div class="hamburg-menu"></div>
+                <nav class="hamburg">
+                    <ul class="hamburglist">
+                        <li class="hamburgitem"><a class="ham-link" href="./textbook.html">Учебник</a></li>
+                        <li class="hamburgitem"><a class="ham-link" href="./components/stats/stats.html">Статистика</a></li>
+                        <li class="hamburgitem"><a class="ham-link" href="#">Словарь</a></li>
+                        <li class="hamburgitem"><a class="ham-link" href="./components/games/games.html">Игры</a></li>
+                        <li class="hamburgitem"><a class="ham-link" href="./components/autorization/autorization.html">Вход</a>                            </li>
+                    </ul>
+                </nav>
+                <div class="logoheader">
+                    <a class="nav-link" href="./index.html"><img src="../../main-assets/logo.png" class="logo"></a>
+                </div>
+                <div class="menu">
+                    <nav class="navbar">
+                        <ul class="navlist">
+                            <li class="navitem"><a class="nav-link" href="./textbook.html">Учебник</a></li>
+                            <li class="navitem"><a class="nav-link" href="./components/stats/stats.html">Статистика</a></li>
+                            <li class="navitem"><a class="nav-link" href="#">Словарь</a></li>
+                            <li class="navitem"><a class="nav-link" href="./components/games/games.html">Игры</a></li>
+                            <li class="navitem"><a class="nav-link auth" href="./components/autorization/autorization.html">Вход</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
-  </header>
-  <main class="main">
+    </header>
+<main class="main-textbook">
     <div class="textbook-wrapper">
-
-      <div class="group-inputs">
-        <input class="group-input" type="radio" name="group-input" id="0" checked="checked">
+    <button class="btn-textbook group-button">Chapter</button>
+    <div class="group-inputs">
+        <input class="group-input" type="radio" name="group-input" id="0" checked="checked" onclick="document.querySelector('.group-button').classList.add('green'), document.querySelector('.group-button').classList.remove('pistachio', 'tacha', 'orange', 'coral', 'red');">
         <label for="0">1</label>
-        <input class="group-input" type="radio" name="group-input" id="1">
+        <input class="group-input" type="radio" name="group-input" id="1" onclick="document.querySelector('.group-button').classList.add('pistachio'), document.querySelector('.group-button').classList.remove('green', 'tacha', 'orange', 'coral', 'red');">
         <label for="1">2</label>
-        <input class="group-input" type="radio" name="group-input" id="2">
+        <input class="group-input" type="radio" name="group-input" id="2" onclick="document.querySelector('.group-button').classList.add('tacha'), document.querySelector('.group-button').classList.remove('pistachio', 'green', 'orange', 'coral', 'red');">
         <label for="2">3</label>
-        <input class="group-input" type="radio" name="group-input" id="3">
+        <input class="group-input" type="radio" name="group-input" id="3" onclick="document.querySelector('.group-button').classList.add('orange'), document.querySelector('.group-button').classList.remove('pistachio', 'tacha', 'green', 'coral', 'red');">
         <label for="3">4</label>
-        <input class="group-input" type="radio" name="group-input" id="4">
+        <input class="group-input" type="radio" name="group-input" id="4" onclick="document.querySelector('.group-button').classList.add('coral'), document.querySelector('.group-button').classList.remove('pistachio', 'tacha', 'orange', 'green', 'red');">
         <label for="4">5</label>
-        <input class="group-input" type="radio" name="group-input" id="5">
+        <input class="group-input" type="radio" name="group-input" id="5" onclick="document.querySelector('.group-button').classList.add('red'), document.querySelector('.group-button').classList.remove('pistachio', 'tacha', 'orange', 'coral', 'green');">
         <label for="5">6</label>
-      </div>
+    </div>
 
-      <div class="pagination">
-        <button class="btn page" id="prev">Prev</button>
+    <div class="pagination">
+        <button class="btn-textbook page" id="prev">Prev</button>
         <span class="page-number">1</span>
-        <button class="btn page" id="next">Next</button>
-      </div>
-
-      <div class="content"></div>
+        <button class="btn-textbook page" id="next">Next</button>
     </div>
-  </main>
-  <footer class="footer">
+
+    <div class="content"></div>
+</div>
+</main>
+<footer class="footer">
     <div class="footer-container">
-      <div class="date">
-        <p>©2022 RS LANG</p>
-      </div>
-      <div class="github">
-        <a class="github-link" href="https://github.com/Elf-Ksenia">Oksana Slipchenko</a>
-        <a class="github-link" href="https://github.com/Arturstm">Artur Stamboltsyan</a>
-        <a class="github-link" href="https://github.com/Michail-Konon">Michail Konon</a>
-      </div>
-      <div class="rss">
-        <img class="RSS" src="./textbook-assets/rs_school_js.svg">
-      </div>
+        <div class="date">
+            <p>©2022 RS LANG</p>
+        </div>
+        <div class="github">
+            <a class="github-link" href="https://github.com/Elf-Ksenia">Oksana Slipchenko</a>
+            <a class="github-link" href="https://github.com/Arturstm">Artur Stamboltsyan</a>
+            <a class="github-link" href="https://github.com/Michail-Konon">Michail Konon</a>
+        </div>
+        <div class="rss">
+            <img class="RSS" src="../../main-assets/rs_school_js.svg">
+        </div>
     </div>
-  </footer>
+</footer>
 
-  <script src="index.js"></script>
+   <script src="index.js"></script>
 </body>
 
 </html>
