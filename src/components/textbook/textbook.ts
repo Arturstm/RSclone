@@ -227,3 +227,10 @@ window.onload = function () {
 
   dictionary(currentPage, currentGroup);
 };
+
+const groupButton = document.querySelector('.group-button');
+if (groupButton) {
+  (groupButton as HTMLElement).addEventListener('click', (e) => {
+    (groupInputs as HTMLElement).classList.toggle('action');
+  });
+}
