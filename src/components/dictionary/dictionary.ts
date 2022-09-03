@@ -1,9 +1,9 @@
+import '../../index.css';
 import './dictionary.css';
-import '../textbook/textbook.css';
 import { chousenCards, CardObjects } from '../textbook/textbook';
 
 const dictContent = document.querySelector('.dictionary-content');
-// (dictContent as HTMLElement).classList.add('content');
+(dictContent as HTMLElement).classList.add('dict-content');
 const deleteItems: Array<string> = [];
 let filteredChousenCards: Array<CardObjects> = [];
 if (localStorage.getItem('chousen-cards')) {
@@ -21,7 +21,7 @@ if (chousenCards) {
 if (dictContent) {
   filteredChousenCards.forEach((item) => {
     const dictCard = document.createElement('div');
-    // dictCard.classList.add('card');
+    dictCard.classList.add('dictCard');
     dictCard.innerHTML = JSON.parse(item.content);
     dictContent.append(dictCard);
     const deleteFromDict = document.getElementsByClassName('chouse-checkbox');

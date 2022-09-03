@@ -1,7 +1,5 @@
 import './audio-challange.css';
 import { fetchData, url, ResponseItem } from '../textbook/textbook';
-import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
-// import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
 const startChallange = document.querySelector('#start-challange');
 const challangeContent = document.querySelector('.challange-content') as HTMLElement;
 const challangeInputs = Array.from(document.getElementsByClassName('.challange-level__radio-btn'));

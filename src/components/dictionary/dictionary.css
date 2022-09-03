@@ -1,0 +1,60 @@
+.main-dict {
+    min-height: calc(100vh - 80px);
+    background-color: #d9d8d8;
+    box-shadow: inset 0px 0px 10px 2px rgb(0 0 0 / 50%);
+}
+
+.dict-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-content: center;
+}
+
+.dictCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    background-color: #f0edf1;
+    width: 100%;
+    padding: 20px 50px 20px 20px;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+    gap: 50px;
+    justify-content: flex-start;
+}
+
+@media (max-width: 1440px) and (min-width: 1024px) {
+    .card {
+        width: 100%;
+        padding: 20px 0px 20px 20px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .card {
+        width: 100%;
+        padding: 20px 0px 20px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 480px) {
+    .card {
+        width: 100%;
+        padding: 20px 0px 20px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+    .card {
+        width: 100%;
+        padding: 20px 0px 20px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+}
