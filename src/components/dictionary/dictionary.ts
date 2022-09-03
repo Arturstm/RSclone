@@ -3,7 +3,9 @@ import './dictionary.css';
 import { chousenCards, CardObjects } from '../textbook/textbook';
 
 const dictContent = document.querySelector('.dictionary-content');
-(dictContent as HTMLElement).classList.add('dict-content');
+if (dictContent) {
+  (dictContent as HTMLElement).classList.add('dict-content');
+}
 const deleteItems: Array<string> = [];
 let filteredChousenCards: Array<CardObjects> = [];
 if (localStorage.getItem('chousen-cards')) {

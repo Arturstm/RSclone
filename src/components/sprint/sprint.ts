@@ -1,3 +1,4 @@
+import '../../index.css';
 import './sprint.css';
 import { fetchData, url, ResponseItem } from '../textbook/textbook';
 import { getRandomItem, shuffle } from '../audio-challange/audio-challange';
