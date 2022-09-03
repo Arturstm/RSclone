@@ -1,6 +1,7 @@
 import './index.css';
 import './components/textbook/textbook';
 import './components/dictionary/dictionary';
+import './components/stats/stats';
 // import './components/autorization/autorization';
 import './components/audio-challange/audio-challange';
 // import './components/sprint/sprint';
