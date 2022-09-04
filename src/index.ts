@@ -4,6 +4,7 @@ import './components/dictionary/dictionary';
 import './components/autorization/autorization';
 import './components/audio-challange/audio-challange';
 import './components/sprint/sprint';
+import './components/stats/stats';
 const hamburgButton = document.querySelector('.hamburg-menu');
 const navHamburg = document.querySelector('.hamburg');
 if (hamburgButton) {
