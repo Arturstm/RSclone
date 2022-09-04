@@ -149,12 +149,14 @@ if (groupInputs) {
 
 function nextPage(p: number) {
   page = p;
+  let pageNum = Number((pageNumber as HTMLElement).textContent);
   if (page < 29) {
     (prev as HTMLElement).style.display = 'inline';
     page++;
-    pageNumber.innerHTML = (page + 1).toString();
+    pageNum++;
+    pageNumber.innerHTML = pageNum.toString();
     localStorage.setItem('currentPage', `${page}`);
-    localStorage.setItem('currentPageNum', `${page + 1}`);
+    localStorage.setItem('currentPageNum', `${pageNum}`);
   } else {
     (next as HTMLElement).style.display = 'none';
   }
