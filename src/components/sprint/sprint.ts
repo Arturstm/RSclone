@@ -8,6 +8,10 @@ const startSprint = document.querySelector('#start-sprint');
 const sprintContent = document.querySelector('.sprint-content') as HTMLElement;
 const sprintInputs = Array.from(document.getElementsByClassName('sprint-level__radio-btn'));
 let level = 0;
+let currentMistakes = 0;
+let currentSprintScore = 0;
+localStorage.setItem('sprintScore', `${currentSprintScore}`);
+localStorage.setItem('sprintMistakes', `${currentMistakes}`);
 let data: Array<ResponseItem> = [];
 let sprintCorrectWords: Array<string> = [];
 let sprintMistakes: Array<string> = [];
@@ -78,8 +82,6 @@ async function getSprintContent(l: number) {
       const target = event.target;
       (document.querySelector('#sprint-submit') as HTMLButtonElement).disabled = true;
       (document.querySelector('#sprint-cancel') as HTMLButtonElement).disabled = true;
-      let currentMistakes = Number(localStorage.getItem('sprintMistakes'));
-      let currentSprintScore = Number(localStorage.getItem('sprintScore'));
       if ((target as HTMLButtonElement).id === 'sprint-submit') {
         if ((sprintTranslation as HTMLElement).textContent === currentItem.wordTranslate) {
           currentSprintScore++;
@@ -117,13 +119,22 @@ async function getSprintContent(l: number) {
 }
 
 function shouResults() {
+  sprintResultBlock.textContent = '';
+  sprintContent.textContent = '';
   sprintContent.style.display = 'none';
-  sprintResultBlock.style.display = '';
-  sprintResultBlock.classList.add('sprint__result-block');
+  sprintResultBlock.style.display = 'flex';
+
+  const resultMistakesBlock = document.createElement('div');
+  resultMistakesBlock.classList.add('result-mistakes__block');
   const resultMistakes = document.createElement('p');
   resultMistakes.classList.add('sprint__result-mistakes');
+  const mistakesIcon = document.createElement('i');
+  mistakesIcon.classList.add('fa-solid');
+  mistakesIcon.classList.add('fa-xmark');
   resultMistakes.textContent = `Ошибок: ${localStorage.getItem('sprintMistakes')}`;
-  sprintResultBlock.append(resultMistakes);
+  resultMistakesBlock.append(mistakesIcon);
+  resultMistakesBlock.append(resultMistakes);
+  sprintResultBlock.append(resultMistakesBlock);
   const mistakesList = document.createElement('ul');
   mistakesList.classList.add('sprint__mistakes-list');
   sprintResultBlock.append(mistakesList);
@@ -133,10 +144,17 @@ function shouResults() {
     mistakesListItem.textContent = word;
     mistakesList.append(mistakesListItem);
   });
+  const resultRightBlock = document.createElement('div');
+  resultRightBlock.classList.add('result-right__block');
+  const rightIcon = document.createElement('div');
+  rightIcon.classList.add('fa-solid');
+  rightIcon.classList.add('fa-check');
   const resultRight = document.createElement('p');
   resultRight.classList.add('sprint__result-right');
   resultRight.textContent = `Правильных ответов: ${localStorage.getItem('sprintScore')}`;
-  sprintResultBlock.append(resultRight);
+  sprintResultBlock.append(resultRightBlock);
+  resultRightBlock.append(rightIcon);
+  resultRightBlock.append(resultRight);
   const correctWordsList = document.createElement('ul');
   correctWordsList.classList.add('sprint__correct-words');
   sprintResultBlock.append(correctWordsList);
@@ -147,7 +165,7 @@ function shouResults() {
     correctWordsList.append(correctWordsListItem);
   });
   const resultBtnBlock = document.createElement('div');
-  sprintResultBlock.classList.add('sprint__result-buttons');
+  resultBtnBlock.classList.add('sprint__result-buttons');
   sprintResultBlock.append(resultBtnBlock);
   continueBtn.classList.add('btn');
   continueBtn.classList.add('btn-submit');
@@ -158,8 +176,10 @@ function shouResults() {
   finishBtn.textContent = 'Закончить игру';
   resultBtnBlock.append(finishBtn);
   (document.querySelector('.sprint-container') as HTMLElement).append(sprintResultBlock);
-  localStorage.removeItem('sprintScore');
-  localStorage.removeItem('sprintMistakes');
+  localStorage.setItem('sprintScore', '0');
+  localStorage.setItem('sprintMistakes', '0');
+  currentMistakes = 0;
+  currentSprintScore = 0;
   sprintMistakes = [];
   sprintCorrectWords = [];
 }
@@ -186,7 +206,8 @@ if (startSprint) {
         level = Number(input.id);
       }
     });
-    sprintContent.style.display = '';
+    sprintContent.style.display = 'flex';
+    (document.querySelector('.sprint-level') as HTMLElement).style.display = 'none';
     sprintTiming(level);
     countTime();
   });
@@ -194,16 +215,15 @@ if (startSprint) {
 
 if (continueBtn) {
   continueBtn.addEventListener('click', (e: Event) => {
-    (continueBtn as HTMLButtonElement).disabled = true;
-    sprintContent.style.display = '';
+    sprintContent.style.display = 'flex';
     sprintTiming(level);
-    sprintContent.style.display = '';
+    sprintContent.style.display = 'flex';
     sprintResultBlock.style.display = 'none';
     counter = 60;
+    sprintContent.textContent = '';
     countTime();
   });
   finishBtn.addEventListener('click', (e: Event) => {
-    (finishBtn as HTMLButtonElement).disabled = true;
     location.reload();
   });
 }
