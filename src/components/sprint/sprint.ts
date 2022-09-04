@@ -1,4 +1,5 @@
 import '../../index.css';
+import '../audio-challange/audio-challange.css';
 import './sprint.css';
 import { fetchData, ResponseItem } from '../textbook/textbook';
 import { getRandomItem } from '../audio-challange/audio-challange';

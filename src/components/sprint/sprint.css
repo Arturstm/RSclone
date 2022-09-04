@@ -1,32 +1,38 @@
 .sprint-container {
     font-family: 'Rubik', sans-serif;
 }
-.btn-submit {
-    background-color: #9a53c9;
-    transition: 0.4s;
-    width: 180px;
-    height: 50px;
-    cursor: pointer;
+
+.sprint-level {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.btn-submit:hover {
-    background-color: #d6a9eb;
+.sprint-buttons {
+    display: flex;
+    gap: 20px;
 }
 
-.btn-cancel {
-    background-color: #bab8bb;
-    transition: 0.4s;
-    width: 180px;
-    height: 50px;
-    cursor: pointer;
+.sprint-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    margin-bottom: 50px;
 }
 
-.btn-cancel:hover {
-    background-color: #e5e5e5;
-}
-
-.btn-confirm {
-    margin-left: 50px;
+.sprint__word-versions-block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .sprint__word-version {
@@ -35,4 +41,16 @@
 
 .sprint__sound-block i {
     cursor: pointer; 
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+    .btn-submit {
+        width: 100px;
+    }
+    .btn-cancel {
+        width: 100px;
+    }
+    .challange__answer-img {
+        width: 300px;
+    }
 }

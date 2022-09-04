@@ -137,24 +137,24 @@
     font-family: 'Rubik', sans-serif;
     font-size: 18px;
 }
-.login {
+.main-button .login {
     background-color: #9a53c9;
     transition: 0.4s;
     width: 180px;
     height: 50px;
     cursor: pointer;
 }
-.login:hover {
+.main-button .login:hover {
     background-color: #d6a9eb;
 }
-.about {
+.main-button .about {
     background-color: #9a53c9;
     transition: 0.4s;
     width: 180px;
     height: 50px;
     cursor: pointer;
 }
-.about:hover {
+.main-button .about:hover {
     background-color: #d6a9eb;
 }
 .spacer {
@@ -226,11 +226,11 @@
 .subtitle {
     font-size: 15px;
 }
-.about {
+.main-button .about {
     width: 130px;
     height: 40px;
 }
-.login {
+.main-button .login {
     width: 130px;
     height: 40px;
 }
@@ -264,11 +264,11 @@
 .main-info {
     gap: 50px;
 }
-.about {
+.main-button .about {
     width: 130px;
     height: 40px;
 }
-.login {
+.main-button .login {
     width: 130px;
     height: 40px;
 }
