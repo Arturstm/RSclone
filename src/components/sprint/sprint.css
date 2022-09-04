@@ -85,11 +85,13 @@
     justify-content: center;
 }
 
-.sprint__word-block .fa-xmark, .result-mistakes__block .fa-xmark {
+.sprint__word-block .fa-xmark,
+.result-mistakes__block .fa-xmark {
     color: #d12d2d;
 }
 
-.sprint__word-block .fa-check, .result-right__block .fa-check {
+.sprint__word-block .fa-check,
+.result-right__block .fa-check {
     color: #2cd129;
 }
 
@@ -101,6 +103,10 @@
     gap: 5px;
 }
 
+.sprint-level .subtitle {
+    font-size: 20px;
+}
+
 .sprint-level__inputs {
     display: flex;
     flex-direction: column;
@@ -108,7 +114,7 @@
 }
 
 .sprint-level__inputs .one {
-    color: rgb(14,244,155);
+    color: rgb(14, 244, 155);
 }
 
 .sprint-level__inputs .two {
@@ -116,7 +122,7 @@
 }
 
 .sprint-level__inputs .three {
-    color: rgb(210,220,105);
+    color: rgb(210, 220, 105);
 }
 
 
@@ -126,32 +132,62 @@
 
 
 .sprint-level__inputs .five {
-    color: rgb(250,160,75);
+    color: rgb(250, 160, 75);
 }
 
 .sprint-level__inputs .six {
-    color: rgb(255,90,100);
+    color: rgb(255, 90, 100);
 }
 
-.sprint__correct-words, .sprint__mistakes-list {
+.sprint__correct-words,
+.sprint__mistakes-list {
     display: flex;
     flex-direction: column;
     gap: 5px;
     justify-content: center;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .sprint-level .subtitle {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 1440px) and (min-width: 480px) {
+    .title {
+        font-size: 30px;
+    }
+    .sprint-level .subtitle {
+        font-size: 17px;
+    }
+}
+
 @media (max-width: 480px) and (min-width: 320px) {
-    .btn-submit {
-        display: flex;
-        flex-direction: column;
-        width: 100px;
+    .sprint-result .btn-submit {
+        width: 120px;
+        height: 60px;
     }
 
-    .btn-cancel {
-        width: 100px;
+    .sprint-result .btn-cancel {
+        width: 120px;
+        height: 60px;
     }
 
-    .challange__answer-img {
-        width: 300px;
+    .sprint-content .btn-submit {
+        width: 120px;
+    }
+
+
+    .sprint-content .btn-cancel {
+        width: 120px;
+    }
+
+
+    .title {
+        font-size: 25px;
+    }
+    
+    .sprint-level .subtitle {
+        font-size: 17px;
     }
 }
