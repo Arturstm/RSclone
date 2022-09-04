@@ -49,6 +49,7 @@
 .header-container {
     padding: 20px 0 20px 0;
     background: #e3e4e6;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .auth {
     margin-left: 100px;
@@ -69,6 +70,7 @@
 .footer {
     background: #e3e4e6;
     padding-top: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .footer-container {
     display: flex;
