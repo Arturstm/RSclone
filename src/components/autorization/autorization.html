@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autorization</title>
+    <link rel= "icon" href="./main-assets/LangTripFav.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <title>LangTrip</title>
 </head>
-
 <body>
     <header>
         <div class="container header-container">
@@ -15,12 +17,11 @@
                 <div class="hamburg-menu"></div>
                 <nav class="hamburg">
                     <ul class="hamburglist">
-                        <li class="hamburgitem"><a class="ham-link" href="./textbook.html">Учебник</a></li>
-                        <li class="hamburgitem"><a class="ham-link" href="./stats.html">Статистика</a></li>
-                        <li class="hamburgitem"><a class="ham-link" href="./dictionary.html">Словарь</a></li>
-                        <li class="hamburgitem"><a class="ham-link" href="./audio-challange.html">Аудиовызов</a></li>
-                        <li class="hamburgitem"><a class="ham-link" href="./sprint.html">Спринт</a></li>
-                        <li class="hamburgitem"><a class="ham-link" href="./autorization.html">Вход</a> </li>
+                        <li class="hamburgitem"><a class="ham-link" href="textbook.html">Учебник</a></li>
+                        <li class="hamburgitem"><a class="ham-link" href="stats.html">Статистика</a></li>
+                        <!-- <li class="hamburgitem"><a class="ham-link" href="./components/dictionary/dictionary.html">Словарь</a></li> -->
+                        <li class="hamburgitem"><a class="ham-link" href="audio-challange.html">Игры</a></li>
+                        <li class="hamburgitem"><a class="ham-link" href="autorization.html">Вход</a>                            </li>
                     </ul>
                 </nav>
                 <div class="logoheader">
@@ -29,23 +30,66 @@
                 <div class="menu">
                     <nav class="navbar">
                         <ul class="navlist">
-                            <li class="navitem"><a class="nav-link" href="./textbook.html">Учебник</a></li>
-                            <li class="navitem"><a class="nav-link" href="./stats.html">Статистика</a></li>
-                            <li class="navitem"><a class="nav-link" href="./dictionary.html">Словарь</a></li>
-                            <li class="navitem"><a class="nav-link" href="./audio-challange.html">Аудиовызов</a></li>
-                            <li class="navitem"><a class="nav-link" href="./sprint.html">Спринт</a></li>
-                            <li class="navitem"><a class="nav-link auth" href="./autorization.html">Вход</a></li>
+                            <li class="navitem"><a class="nav-link" href="textbook.html">Учебник</a></li>
+                            <li class="navitem"><a class="nav-link" href="stats.html">Статистика</a></li>
+                            <!-- <li class="navitem"><a class="nav-link" href="dictionary.html">Словарь</a></li> -->
+                            <li class="navitem"><a class="nav-link" href="audio-challange.html">Игры</a></li>
+                            <li class="navitem"><a class="nav-link auth" href="autorization.html">Вход</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
-    <main class="main">
-        <div class="container">
+    <section class="auth__reg">
+        <form id="auth__form" action="https://rs-lang-179.herokuapp.com/users">
+            <div class="auth__container">
+              <h1>Регистрация</h1>
+              <hr>
+              <label for="user"><b>Имя пользователя</b></label>
+              <input id="auth_userName" type="text" class="auth__user-input" placeholder="Имя пользователя" name="auth__user" required>
+          
+              <label for="email"><b>Почта</b></label>
+              <input id="auth_email" type="email" class="auth__email-input" placeholder="Email" name="auth__email" required>
+          
+              <label for="pass"><b>Пароль</b></label>
+              <input id="auth_pass" type="password" class="auth__pass-input" placeholder="Пароль" name="auth__pass" required>
+          
+              <hr>
+          
+              <button id="auth_btn_submit" type="submit" class="registerbtn">Создать аккаунт</button>
+            </div>
+            
+            <div class="auth__container signin">
+              <p>Уже зарегистрированы?<a href="#" class="toLogin">Войти</a>.</p>
+            </div>
+          </form>
+          
+    </section>
 
-        </div>
-    </main>
+    <section class="auth__singin hide">
+        <form id="log__form" action="https://rs-lang-179.herokuapp.com/users">
+            <div class="auth__container">
+              <h1>Вход</h1> 
+              <hr>
+              
+              <label for="email"><b>Почта</b></label>
+              <input id="log_email" type="email" class="log__email-input" placeholder="Email" name="log__email" required>
+          
+              <label for="pass"><b>Пароль</b></label>
+              <input id="log_pass" type="password" class="log__pass-input" placeholder="Пароль" name="log__pass" required>
+          
+              <hr>
+          
+              <button type="submit-signin" class="registerbtn">Войти</button>
+            </div>
+            
+            <div class="auth__container signin">
+              <p>Перейти к <a href="#" class="toReg">Регестрации</a>.</p>
+            </div>
+          </form>
+          
+    </section>
     <footer class="footer">
         <div class="footer-container">
             <div class="date">
@@ -61,8 +105,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="./index.js"></script>
-    </body>
-
+    <script defer src="./index.js"></script>
+</body>
 </html>
