@@ -207,6 +207,8 @@ if (startChallange) {
         level = Number(input.id);
       }
     });
+    challangeContent.style.display = 'flex';
+    (document.querySelector('.challange-level') as HTMLElement).style.display = 'none';
     getChallangeContent(level);
   });
 }
