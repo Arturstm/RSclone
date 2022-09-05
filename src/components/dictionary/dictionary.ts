@@ -32,6 +32,7 @@ if (dictContent) {
     Array.from(deleteFromDict).forEach((checkbox) => {
       checkbox.classList.remove('chouse-checkbox');
       checkbox.classList.add('delete-checkbox');
+      (checkbox as HTMLInputElement).disabled = false;
     });
     const deleteFromDictLabels = document.getElementsByClassName('chouse-label');
     Array.from(deleteFromDictLabels).forEach((label) => {
@@ -40,6 +41,8 @@ if (dictContent) {
     dictCard.onclick = function (event: Event) {
       const target = event.target;
       if ((target as HTMLInputElement).checked) {
+        (dictCard.querySelector('.chouse-label') as HTMLElement).textContent = 'Удалено из словаря';
+        (target as HTMLInputElement).disabled = true;
         deleteItems.push((target as HTMLElement).id);
         if ((item.id = (target as HTMLElement).id)) {
           filteredChousenCards.splice(filteredChousenCards.indexOf(item), 1);
