@@ -1,0 +1,123 @@
+/* main desgin was taken from www.w3schools.com*/
+.auth__body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Add padding to containers */
+.auth__container {
+    padding: 16px;
+    background-color: white;
+}
+
+.main-auth {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Full-width input fields */
+.log__email-input,
+.log__pass-input,
+.auth__user-input,
+.auth__email-input,
+.auth__pass-input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+a {
+    color: dodgerblue;
+}
+
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.auth__exit-main {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+}
+
+.auth__exit {
+    text-align: center;
+    display: flex;
+    width: 45%;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 10px;
+    display: block;
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.auth__exit-greet {
+    margin: 5px;
+    margin-top: 3%;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.auth__exit-user-name {
+    margin: 4%;
+    text-decoration: underline;
+}
+
+.auth__exit-btns {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 3%;
+}
+
+.auth__to-main-btn,
+.auth__log-out-btn {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2rem;
+    padding: 16px 20px;
+    margin: 8px auto;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    opacity: 0.9;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.auth__to-main-btn:hover,
+.auth__log-out-btn:hover {
+    opacity: 1;
+}

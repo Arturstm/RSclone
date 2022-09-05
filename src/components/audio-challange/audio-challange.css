@@ -1,0 +1,146 @@
+.btn-submit {
+    background-color: #9a53c9;
+    transition: 0.4s;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+}
+
+.btn-submit:hover {
+    background-color: #d6a9eb;
+}
+
+.btn-cancel {
+    background-color: #bab8bb;
+    transition: 0.4s;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+}
+
+.btn-cancel:hover {
+    background-color: #e5e5e5;
+}
+
+.btn-confirm {
+    margin-left: 50px;
+}
+
+.challange__word-version {
+    cursor: pointer;
+}
+
+.challange__sound-block i {
+    cursor: pointer; 
+}
+
+.challange__answer-block i {
+    display: block;
+}
+.challange-level {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+    width: fit-content;
+    background-color: #f3f3f3;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+    padding: 20px 20px 20px 20px;
+}
+.challange-buttons {
+    display: flex;
+    gap: 20px;
+}
+.challange-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: #f0edf1;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px 50px 20px 50px;
+    width: fit-content;
+}
+.challange__answer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.challange__word-versions-block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.container-challange {
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+.subtitle {
+    font-size: 20px;
+}
+.challange-level__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.challange__counter-span {
+    background-color: #bab8bb;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.subtitle.one {
+    color: rgb(14, 244, 155);
+}
+.subtitle.two {
+    color: rgb(152, 244, 14);
+}
+.subtitle.three {
+    color: rgb(210, 220, 105);
+}
+.subtitle.four {
+    color: rgb(220, 197, 105);
+}
+.subtitle.five {
+    color: rgb(250, 160, 75);
+}
+.subtitle.six {
+    color:  rgb(255, 90, 100);
+}
+@media (max-width: 1440px) and (min-width: 480px) {
+    .subtitle {
+        font-size: 17px;
+    }
+}
+@media (max-width: 480px) and (min-width: 320px) {
+    .btn-submit {
+        width: 100px;
+    }
+    .btn-cancel {
+        width: 100px;
+    }
+    .challange__answer-img {
+        width: 300px;
+    }
+    .subtitle {
+        font-size: 15px;
+    }
+}
