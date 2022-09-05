@@ -9,6 +9,11 @@
     background-color: white;
 }
 
+.main-auth {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 /* Full-width input fields */
 .log__email-input,
 .log__pass-input,
