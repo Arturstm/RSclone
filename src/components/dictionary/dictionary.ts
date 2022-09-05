@@ -19,6 +19,10 @@ if (chousenCards) {
     });
 }
 if (dictContent) {
+  if (!filteredChousenCards.length) {
+    dictContent.textContent = 'Ваш словарь пока пуст. Вы можете добавить в него слова из учебника.';
+    (dictContent as HTMLElement).style.textAlign = 'center';
+  }
   filteredChousenCards.forEach((item) => {
     const dictCard = document.createElement('div');
     dictCard.classList.add('dict-card');
