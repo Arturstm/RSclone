@@ -184,9 +184,9 @@ const regUser = async (event: Event) => {
     alert('Поздравляем! Вы зарегестрированы на LangTrip.');
     (registration as HTMLElement).classList.add('hide');
     (login as HTMLElement).classList.remove('hide');
-  } else if (!emailRegexp.test((authEmail as HTMLImageElement).textContent as string)) {
+  } else if (!emailRegexp.test((authEmail as HTMLInputElement).value as string)) {
     alert('Введите валидный email');
-    console.log(emailRegexp.test((authEmail as HTMLImageElement).textContent as string));
+    console.log((authEmail as HTMLInputElement).value);
   } else if ((authPass as HTMLInputElement).value.length < 8) {
     alert('Пароль должен быть минимум 8 символов длинной');
   } else {

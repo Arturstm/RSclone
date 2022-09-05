@@ -217,10 +217,12 @@ window.onload = function () {
   currentGroup = Number(localStorage.getItem('currentGroup'));
   currentPage = Number(localStorage.getItem('currentPage'));
   currentPageNum = Number(localStorage.getItem('currentPageNum'));
-  if (currentPageNum !== 0) {
-    pageNumber.innerHTML = currentPageNum.toString();
-  } else {
-    pageNumber.innerHTML = '1';
+  if (pageNumber) {
+    if (currentPageNum !== 0) {
+      pageNumber.innerHTML = currentPageNum.toString();
+    } else {
+      pageNumber.innerHTML = '1';
+    }
   }
   page = currentPage;
   reRenderData(currentPage, currentGroup);
