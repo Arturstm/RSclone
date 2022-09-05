@@ -6,6 +6,7 @@ import './textbook.css';
 export const url = 'https://rs-lang-179.herokuapp.com/';
 let group = 0;
 let page = 0;
+// let pageNum = 1;
 let currentGroup: number;
 let currentPage: number;
 let currentPageNum: number;
@@ -149,14 +150,14 @@ if (groupInputs) {
 
 function nextPage(p: number) {
   page = p;
-  let pageNum = Number((pageNumber as HTMLElement).textContent);
+  // pageNum = Number((pageNumber as HTMLElement).textContent);
   if (page < 29) {
     (prev as HTMLElement).style.display = 'inline';
     page++;
-    pageNum++;
-    pageNumber.innerHTML = pageNum.toString();
+    // pageNum++;
+    pageNumber.innerHTML = (page + 1).toString();
     localStorage.setItem('currentPage', `${page}`);
-    localStorage.setItem('currentPageNum', `${pageNum}`);
+    localStorage.setItem('currentPageNum', `${page + 1}`);
   } else {
     (next as HTMLElement).style.display = 'none';
   }
@@ -216,8 +217,10 @@ window.onload = function () {
   currentGroup = Number(localStorage.getItem('currentGroup'));
   currentPage = Number(localStorage.getItem('currentPage'));
   currentPageNum = Number(localStorage.getItem('currentPageNum'));
-  if (pageNumber) {
+  if (currentPageNum !== 0) {
     pageNumber.innerHTML = currentPageNum.toString();
+  } else {
+    pageNumber.innerHTML = '1';
   }
   page = currentPage;
   reRenderData(currentPage, currentGroup);
