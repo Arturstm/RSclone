@@ -158,9 +158,10 @@ if (authBtnToMain) {
     window.location.href = './index.html';
   });
 }
-
-window.onload = function () {
-  if (localStorage.getItem('userName')) {
-    authLoginSuccess();
-  }
-};
+if (document.querySelector('.main-auth')) {
+  window.onload = function () {
+    if (localStorage.getItem('userName')) {
+      authLoginSuccess();
+    }
+  };
+}

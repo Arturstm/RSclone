@@ -30,7 +30,7 @@ export interface ResponseItem {
 
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
-
+// const checkedCards: Array<string> = [];
 const groupInputs = document.querySelector('.group-inputs') as HTMLElement;
 
 export async function fetchData(p: number, g: number) {
@@ -105,7 +105,9 @@ export async function reRenderData(p: number, g: number) {
       (document.querySelector('.content') as HTMLElement).append(card);
       chouseCheckbox.setAttribute('id', `${item.id}`);
       chouseLabel.setAttribute('id', `${item.id}`);
-
+      // if (localStorage.getItem('checkedCards')) {
+      //   checkedCards.push(localStorage.getItem('checkedCards') as string);
+      // }
       card.append(img);
       card.append(textBlock);
       textBlock.append(wordBlock);
@@ -204,6 +206,10 @@ export async function dictionary(p: number, g: number) {
         const target = event.target;
         if ((target as HTMLInputElement).classList.contains('chouse-checkbox')) {
           if ((target as HTMLInputElement).checked) {
+            (card.querySelector('.chouse-label') as HTMLElement).textContent = 'Добавлено в словарь';
+            (target as HTMLInputElement).disabled = true;
+            // checkedCards.push((target as HTMLInputElement).id);
+            // localStorage.setItem('checkedCards', `${checkedCards}`);
             chousenCards.push({ id: (target as HTMLElement).id, content: JSON.stringify(card.innerHTML) });
           }
           localStorage.setItem('chousen-cards', JSON.stringify(chousenCards));

@@ -12,6 +12,7 @@ let currentMistakes = 0;
 let currentSprintScore = 0;
 localStorage.setItem('sprintScore', `${currentSprintScore}`);
 localStorage.setItem('sprintMistakes', `${currentMistakes}`);
+const learnedWords: Array<string> = [];
 let data: Array<ResponseItem> = [];
 let sprintCorrectWords: Array<string> = [];
 let sprintMistakes: Array<string> = [];
@@ -69,6 +70,7 @@ async function getSprintContent(l: number) {
     sprintCancelBtn.setAttribute('id', 'sprint-cancel');
     sprintCancelBtn.textContent = 'НЕправильно';
     sprintButtonBlock.append(sprintCancelBtn);
+    learnedWords.push(currentItem.word);
 
     const answerVersions: Array<string> = [];
     answerVersions.push(currentItem.wordTranslate);
@@ -226,4 +228,8 @@ if (continueBtn) {
   finishBtn.addEventListener('click', (e: Event) => {
     location.reload();
   });
+}
+
+if (localStorage.getItem('userName')) {
+  localStorage.setItem('learnedWords', `${learnedWords}`);
 }
