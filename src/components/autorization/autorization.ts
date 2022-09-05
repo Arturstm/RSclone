@@ -116,6 +116,7 @@ const toRegistration = document.querySelector('.toLogin');
 const toSingIn = document.querySelector('.toReg');
 const registration = document.querySelector('.auth__reg');
 const login = document.querySelector('.auth__singin');
+const logout = document.querySelector('.auth__exit-main');
 
 const baseUrl = 'https://rs-lang-179.herokuapp.com';
 
@@ -138,8 +139,20 @@ const authUserName = document.querySelector('#auth_userName');
 const authEmail = document.querySelector('#auth_email');
 const authPass = document.querySelector('#auth_pass');
 
+const authBtnLogout = document.getElementById('auth__log-out-btn');
+const authBtnToMain = document.getElementById('auth__to-main-btn');
+
 const logEmail = document.querySelector('#log_email');
 const logPass = document.querySelector('#log_pass');
+
+function authLoginName() {
+  document.getElementById('auth__exit-logout')!.textContent = localStorage.getItem('userName');
+}
+
+function authLoginSuccess() {
+  (login as HTMLElement).classList.add('hide');
+  (logout as HTMLElement).classList.remove('hide');
+}
 
 const createUser = async (user: NewUser) => {
   try {
@@ -218,7 +231,8 @@ const signIn = async (e: Event) => {
     localStorage.setItem('refreshToken', res.refreshToken);
     localStorage.setItem('userID', res.userId);
     localStorage.setItem('userName', res.name);
-    window.location.href = './index.html';
+    authLoginName();
+    authLoginSuccess();
     console.log(res);
   }
 };
@@ -228,4 +242,18 @@ if (authForm) {
 }
 if (logForm) {
   logForm.addEventListener('submit', signIn);
+}
+
+if (authBtnLogout) {
+  authBtnLogout.addEventListener('click', () => {
+    localStorage.clear();
+    alert('Вы вышли из учетной записи');
+    window.location.href = './index.html';
+  });
+}
+
+if (authBtnToMain) {
+  authBtnToMain.addEventListener('click', () => {
+    window.location.href = './index.html';
+  });
 }
